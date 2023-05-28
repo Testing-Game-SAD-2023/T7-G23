@@ -40,5 +40,5 @@ We implemented REST API using the Spring Boot framework. Below is the endpoint p
 ~/CompExec  
 **GET**  
 **params**: *String* urlClass, *String* urlTestClass  
-**response**: *json* "idResult" : int, "resMessage" : String  
+**response**: *json* {"idResult" : int, "resMessage" : String}  
 Requires test cases to be compiled and executed by passing the url of the class to be tested and the url of the test class.
