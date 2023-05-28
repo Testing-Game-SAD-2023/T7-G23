@@ -31,7 +31,7 @@ We decided to use a layered architecture for our software module, below is the c
 - Maven
 - Junit
 - Jacoco
-- Spring Boot (REST API)
+- Spring Boot
 
 ## Interface
 
