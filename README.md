@@ -37,8 +37,8 @@ We decided to use a layered architecture for our software module, below is the c
 
 We implemented REST API using the Spring Boot framework. Below is the endpoint provided to request compilation and test execution by providing class to test and test class.
 
-~/CompExec
-**GET**
-**params**: *String* urlClass, *String* urlTestClass
-**response**: *json* "idResult" : int, "resMessage" : String
+~/CompExec \\
+**GET** \\
+**params**: *String* urlClass, *String* urlTestClass \\
+**response**: *json* "idResult" : int, "resMessage" : String \\
 Requires test cases to be compiled and executed by passing the url of the class to be tested and the url of the test class.
