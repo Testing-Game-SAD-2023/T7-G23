@@ -28,18 +28,19 @@ We decided to use a layered architecture for our software module, below is the c
 
 ## Technologies
 
-- Maven
-- Junit
-- Jacoco
-- Spring Boot
+- OpenJDK (11 and 17)
+- Maven (3.8.3)
+- Junit (4 or 5)
+- Jacoco (0.8.2)
+- Spring Boot (3.1.0) - Spring Web
 
 ## Interface
 
-We implemented REST API using the Spring Boot framework. Below is the endpoint provided to request compilation and test execution by providing class to test and test class.
+We implemented REST API using the Spring Boot framework, with Spring Web as dependency. Below is the endpoint provided to request compilation and test execution by providing class to test and test class.
 
 ~/CompExec  
 **GET**  
 **params:** *String* urlClassUT, *String* urlTestClass  
-**response:** *json* {"idResult" : int, "resMessage" : String}  
+**response:** *json* {"idResult" : int, "resMessage" : String, "pathCoverage" : String}  
 **description:** Requires test cases to be compiled and executed by passing the url of the class to be tested and the url of the test class.  
-**example:** http://testurl.com/CompExec?urlClassUT=urltoclass&urlTestClass=urltotestclass
+**example:** http://localhost:8080/compexec?urlClass=urltoclass&urlTestClass=urltotestclass
