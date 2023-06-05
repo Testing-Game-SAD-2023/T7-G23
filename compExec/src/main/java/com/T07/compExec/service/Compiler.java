@@ -25,9 +25,11 @@ public class Compiler {
             int exitCode = process.waitFor();
 
             ProcessC procC = new ProcessC();
-            compRes = procC.Process("logcomp.txt");
+            compRes = procC.Process(path+"logcomp.txt");
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

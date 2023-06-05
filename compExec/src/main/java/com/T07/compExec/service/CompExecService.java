@@ -8,10 +8,10 @@ public class CompExecService {
 
     private CompExecResults res;
 
-    public CompExecResults getCompExecResults (String pathClass, String pathTestClass) {
+    public CompExecResults getCompExecResults (String urlClass, String urlTestClass) {
         Manager m = new Manager();
 
-        CompExecResults res = m.CompileRun(pathClass, pathTestClass);
+        CompExecResults res = m.CompileRun(urlClass, urlTestClass);
 
         return res;
     }

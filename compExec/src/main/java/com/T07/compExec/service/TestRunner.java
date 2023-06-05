@@ -25,10 +25,12 @@ public class TestRunner {
             int exitCode = process.waitFor();
 
             ProcessE procE = new ProcessE();
-            exRes = procE.Process(path + "logexe.txt");
+            exRes = procE.Process(path+"logexe.txt");
 
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

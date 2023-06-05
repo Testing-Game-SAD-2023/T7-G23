@@ -8,47 +8,49 @@ import org.springframework.web.client.RestTemplate;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class Manager {
 
-    final private String pathMVNProject = "D:/IntelliJ/Projects/project_under_test/";
-    final private String pathMVNProject_class = "D:/IntelliJ/Projects/project_under_test/src/main/java/pacchetto/";
-    final private String pathMVNProject_testclass = "D:/IntelliJ/Projects/project_under_test/src/test/java/pacchetto/";
+    private final String pathMVNProject = "/projectUT/";
+    private final String pathMVNProject_class = "/projectUT/src/main/java/pacchetto/";
+    private final String pathMVNProject_testclass = "/projectUT/src/test/java/pacchetto/";
 
-    public CompExecResults doCompExec(String pathClass, String pathTestClassth) {
+    public CompExecResults doCompExec(String pathClass, String pathTestClassth, String pathCoverage) {
 
-        CompExecResults res = new CompExecResults(0, pathClass+pathTestClassth);
+        CompExecResults res = new CompExecResults(0, pathClass+pathTestClassth, pathCoverage);
 
         return res;
     }
 
-    public CompExecResults CompileRun(String url_classe, String url_classetest) {
+    public CompExecResults CompileRun(String urlClasse, String urlClassetest) {
+
+
+        // codice giusto per recuperare file da server e metterlo in una cartella
 
         try {
 
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> responseClass = restTemplate.getForEntity(url_classe, String.class);
-            ResponseEntity<String> responseTestClass = restTemplate.getForEntity(url_classetest, String.class);
+            InputStream inClass = new URL(urlClasse).openStream();
+            String filenameClass = Paths.get(new URI(urlClasse).getPath()).getFileName().toString();
+            Files.copy(inClass, Paths.get(pathMVNProject_class+filenameClass), StandardCopyOption.REPLACE_EXISTING);
 
-            if (responseClass.getStatusCode() != HttpStatus.OK || responseTestClass.getStatusCode() != HttpStatus.OK) {
-                throw new IOException("Classe o Classe di test non trovata");
-            }
+            InputStream inTestClass = new URL(urlClassetest).openStream();
+            String filenameTestClass = Paths.get(new URI(urlClassetest).getPath()).getFileName().toString();
+            Files.copy(inTestClass, Paths.get(pathMVNProject_testclass+filenameTestClass), StandardCopyOption.REPLACE_EXISTING);
 
-            String bodyClass = responseClass.getBody();
-            String bodyTestClass = responseTestClass.getBody();
-
-            File fileClass = new File(pathMVNProject_class+ "classe.java");
-            File fileTestClass = new File(pathMVNProject_testclass+ "testclass.java");
-
-            FileWriter myWriter_class = new FileWriter(fileClass);
-            myWriter_class.write(bodyClass);
-            myWriter_class.close();
-            FileWriter myWriter_testclass = new FileWriter(fileTestClass);
-            myWriter_testclass.write(bodyTestClass);
-            myWriter_testclass.close();
-
-        } catch (IOException e) {
-            System.err.println("errore:" + e.getMessage());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e1) {
+            throw new RuntimeException(e1);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
 
         //chiamo il compilatore
@@ -70,6 +72,7 @@ public class Manager {
     private CompExecResults RunTests(String pathMVNProject) {
         TestRunner t = new TestRunner();
         CompExecResults exRes = t.RunTest(pathMVNProject);
+        exRes.setPathCoverage(pathMVNProject+"target/site/jacoco/");
         return exRes;
     }
 
