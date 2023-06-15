@@ -1,4 +1,4 @@
-package pacchetto;
+package TestPackage;
 
 //import static org.junit.Assert.assertEquals; //junit 4
 import static org.junit.jupiter.api.Assertions.assertEquals; //junit 5
