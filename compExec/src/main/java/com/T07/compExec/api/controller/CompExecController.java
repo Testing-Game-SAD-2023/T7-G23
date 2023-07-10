@@ -18,7 +18,8 @@ public class CompExecController {
     }
 
     @GetMapping("/compexec")
-    public CompExecResults getCompExec(@RequestParam String urlClass, @RequestParam String urlTestClass) {
-        return compExecService.getCompExecResults(urlClass, urlTestClass);
+    public CompExecResults getCompExec(@RequestParam String Class, @RequestParam String TestClass) {
+        return compExecService.getCompExecResults(Class, TestClass);
     }
+
 }

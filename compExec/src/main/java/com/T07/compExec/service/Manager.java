@@ -1,12 +1,7 @@
 package com.T07.compExec.service;
 
 import com.T07.compExec.api.model.CompExecResults;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -24,21 +19,13 @@ public class Manager {
     private final String pathMVNProject_class = "/projectUT/src/main/java/TestPackage/";
     private final String pathMVNProject_testclass = "/projectUT/src/test/java/TestPackage/";
 
-    public CompExecResults doCompExec(String pathClass, String pathTestClassth, String pathCoverage) {
-
-        CompExecResults res = new CompExecResults(0, pathClass+pathTestClassth, pathCoverage);
-
-        return res;
-    }
-
     public CompExecResults CompileRun(String urlClasse, String urlClassetest) {
-
 
         // codice giusto per recuperare file da server e metterlo in una cartella
 
         try {
 
-            if (urlClasse.contains("http")) {
+            if (urlClasse.contains("http://") || urlClasse.contains("https://")) {
 
                 InputStream inClass = new URL(urlClasse).openStream();
                 String filenameClass = Paths.get(new URI(urlClasse).getPath()).getFileName().toString();
