@@ -6,9 +6,7 @@ import java.io.IOException;
 
 public class TestRunner {
 
-    public CompExecResults RunTest(String path) {
-
-        CompExecResults exRes = new CompExecResults();
+    public void RunTests(String path, CompExecResults results) {
 
         try {
             // Command to execute
@@ -25,7 +23,7 @@ public class TestRunner {
             int exitCode = process.waitFor();
 
             ProcessE procE = new ProcessE();
-            exRes = procE.Process(path+"logexe.txt");
+            procE.Process(path+"logexe.txt", results, exitCode);
 
 
         } catch (IOException e) {
@@ -34,7 +32,6 @@ public class TestRunner {
             e.printStackTrace();
         }
 
-        return exRes;
     }
 
 }

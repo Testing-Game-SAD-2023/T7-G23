@@ -6,9 +6,7 @@ import java.io.IOException;
 
 public class Compiler {
 
-    public CompExecResults Compile (String path) {
-
-        CompExecResults compRes = new CompExecResults();
+    public void Compile (String path, CompExecResults results) {
 
         try {
             // Command to execute
@@ -25,7 +23,7 @@ public class Compiler {
             int exitCode = process.waitFor();
 
             ProcessC procC = new ProcessC();
-            compRes = procC.Process(path+"logcomp.txt");
+            procC.Process(path+"logcomp.txt", results, exitCode);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,7 +31,6 @@ public class Compiler {
             e.printStackTrace();
         }
 
-        return compRes;
     }
 
 }

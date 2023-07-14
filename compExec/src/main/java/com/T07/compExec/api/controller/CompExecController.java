@@ -1,11 +1,10 @@
 package com.T07.compExec.api.controller;
 
 import com.T07.compExec.api.model.CompExecResults;
+import com.T07.compExec.api.model.UrlClassToTest;
 import com.T07.compExec.service.CompExecService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CompExecController {
@@ -18,8 +17,18 @@ public class CompExecController {
     }
 
     @GetMapping("/compexec")
+    public CompExecResults getCompExec(@RequestParam String ClassName, @RequestParam String StudentLogin, @RequestParam String GameId) {
+        return compExecService.getCompExecResults(ClassName, StudentLogin, GameId);
+    }
+/*
+    @GetMapping("/compexecpath")
     public CompExecResults getCompExec(@RequestParam String Class, @RequestParam String TestClass) {
-        return compExecService.getCompExecResults(Class, TestClass);
+        return compExecService.getCompExecResultsPath(Class, TestClass);
+    }
+*/
+    @PostMapping("/compexecurl")
+    public CompExecResults getCompExecUrl(@RequestBody UrlClassToTest urls, @RequestParam String ClassName, @RequestParam String StudentLogin, @RequestParam String GameId) {
+        return compExecService.getCompExecResultsUrl(urls.getUrlClass(), urls.getUrlTestClass(), ClassName, StudentLogin, GameId);
     }
 
 }
