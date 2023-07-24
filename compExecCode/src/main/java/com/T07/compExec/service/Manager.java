@@ -80,7 +80,7 @@ public class Manager {
         if (res.getIdResult() == 0) {
             RunTests(pathProject);
 
-            easyCopyDirectory(pathProject+"target/site/", pathJacoco);
+            easyCopyDirectory(pathProject+"target/site/jacoco", pathJacoco);
             res.setPathCoverage(pathJacoco);
         }
 
@@ -185,6 +185,7 @@ public class Manager {
         }
 
         //chiamo il compilatore
+
         Compile(pathProject);
 
         if (res.getIdResult() == 0) {
