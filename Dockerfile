@@ -4,7 +4,6 @@ RUN mkdir tempRun
 RUN mkdir FileSystem
 RUN mkdir App
 COPY projectUT/ ProjectUT/
-COPY FileSystem/ FileSystem/
 COPY compExec-0.0.1-SNAPSHOT.jar App/CompExec.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/App/CompExec.jar"]
