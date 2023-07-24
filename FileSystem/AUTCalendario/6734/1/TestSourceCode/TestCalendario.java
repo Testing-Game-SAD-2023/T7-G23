@@ -1,4 +1,4 @@
-
+package TestPackage;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.FromDataPoints;
 import org.junit.experimental.theories.Theories;
