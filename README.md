@@ -29,4 +29,4 @@ We implemented REST API using the Spring Boot framework, with Spring Web as depe
 **body:** *json* {"urlClass" : String, "urlTestClass" : String}  
 **response:** *json* {"idResult" : int, "resMessage" : String, "pathCoverage" : String}  
 **description:** Requires test cases to be compiled and executed by passing the URLs to retrieve and save the classes into the filesystem.  
-**example:** http://localhost:8080/compexec?ClassName=AUTCalcolatrice&StudentLogin=1234&GameId=1 + body  
+**example:** http://localhost:8080/compexecurl?ClassName=AUTCalcolatrice&StudentLogin=1234&GameId=1 + body  
