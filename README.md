@@ -30,14 +30,14 @@ All the module's results are gonna be placed in the folder *FileSystem* (which y
 ## Module interface
 We implemented REST API using the Spring Boot framework. Below is the endpoint provided to request compilation and test execution by providing class to test and test class. The results regarding the coverage must be retrieved by the caller to the path relating to the *FileSystem* folder provided when the container has been executed.
 
-~/compexec -> Retrieve the classes from the local filesystem and then compile and run the tests    
+~/compexec   
 **GET**  
 **params:** *String* ClassName, *String* StudentLogin, *String* GameId  
 **response:** *json* {"idResult" : int, "resMessage" : String, "pathCoverage" : String}  
 **description:** Requires test cases to be compiled and executed by passing the parameters to retrieve the classes from the shared filesystem.  
 **example:** http://localhost:8080/compexec?ClassName=AUTCalcolatrice&StudentLogin=1234&GameId=1  
 
-~/compexecurl -> Retrieve the classes from the ulrs and then compile and run the tests    
+~/compexecurl   
 **POST**  
 **params:** *String* ClassName, *String* StudentLogin, *String* GameId  
 **body:** *json* {"urlClass" : String, "urlTestClass" : String}  
